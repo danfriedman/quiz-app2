@@ -9,18 +9,25 @@
 </head>
 <body>
 	<div class="container col-md-8">
-		<h1>Yankee Trivia Quiz</h1>
+		<h1>Bernie Williams Trivia</h1>
 		<div class="question">
-			<h4 class="question-text">What number did Bernie Williams wear?</h4>
-			<button class="answer btn btn-primary">51</button>
-			<button class="answer btn btn-primary">20</button>
-			<button class="answer btn btn-primary">17</button>
-			<button class="answer btn btn-primary">39</button>
+			<h4 class="question-tracker">Question0</h4>
+			<h3 class="question-text">What?</h3>
+			<button class="answer btn btn-primary answer1">5</button>
+			<button class="answer btn btn-primary answer2">2</button>
+			<button class="answer btn btn-primary answer3">1</button>
+			<button class="answer btn btn-primary answer4">3</button>
 		</div>
 
 		<div class="feedback">
-			<h4 class="answer-head">Correct!</h4>
-			<p class="answer-body">Bernie Williams wore number 51 for his entire career.</p>
+			<h4 class="hidden correct answer-head">Correct!</h4>
+			<h4 class="hidden incorrect answer-head">Nope! The correct answer was: <span class="prev-answer"></span></h4>
+		</div>
+
+		<button class="next hidden">Next Question</button>
+
+		<div class="tracker">
+			<h5><span class="correct-count">0</span> out of <span class="total-count">0</span> correct</h5>
 		</div>
 
 	</div>
