@@ -1,8 +1,3 @@
-// Questions for Joe:
-// How to think about where to separate functions, for example function checkCorrect could further break down
-// TODO
-// Add finishing state
-
 var question0 = {
 	ask:"Default question",
 	correctAnswer:"Correct",
