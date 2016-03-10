@@ -1,7 +1,6 @@
 // Questions for Joe:
 // How to think about where to separate functions, for example function checkCorrect could further break down
 // TODO
-// false answers should be an array
 // Add finishing state
 
 var question0 = {
@@ -11,6 +10,7 @@ var question0 = {
 	init: function(ask, correctAnswer, falseAnswers) {
 		this.ask = ask;
 		this.correctAnswer = correctAnswer;
+		this.falseAnswers = [];
 		this.falseAnswers[0] = falseAnswers[0];
 		this.falseAnswers[1] = falseAnswers[1];
 		this.falseAnswers[2] = falseAnswers[2];
@@ -36,6 +36,8 @@ question3.init("How many world series did Bernie Williams win with the Yankees?"
 var question4 = Object.create(question0);
 question4.init("Which awards has Bernie been nominated for but not won?", "Latin Grammy", ["Silver Slugger", "Gold Glove", "ALCS MVP"]);
 
+var questionList = [question0, question1, question2, question3, question4];
+
 var questionNumber = 0;
 var currentQuestion = "";
 var correctCount = 0;
@@ -43,10 +45,10 @@ var incorrectCount = 0;
 
 function setNewQuestion() {
 	questionNumber++;
-	currentQuestion = "question" + questionNumber;
-	eval(currentQuestion).printQuestion();
+	currentQuestion = questionList[questionNumber];
+	currentQuestion.printQuestion();
 	$('.question-tracker').html("Question " + questionNumber);
-	$('.btn-primary').addClass("answer");
+	$('.answer').attr("disabled", false);
 }
 
 // Set first question on load
@@ -62,11 +64,11 @@ $('.next').on('click', function() {
 $('.question').on('click', '.answer', function(){
 	var selectedAnswer = $(this).html();
 	checkCorrect(selectedAnswer);
-	$('.answer').removeClass("answer");
+	$('.answer').attr("disabled", true);
 });
 
 function checkCorrect(selectedAnswer) {
-	var currentCorrect = eval(currentQuestion).correctAnswer;
+	var currentCorrect = questionList[questionNumber].correctAnswer;
 	if (currentCorrect == selectedAnswer) {
 		$('.correct').toggleClass('hidden');
 		correctCount++;
@@ -75,6 +77,7 @@ function checkCorrect(selectedAnswer) {
 		$('.prev-answer').html(currentCorrect);
 		incorrectCount++;
 	}
+
 	$('.correct-count').html(correctCount);
 	var totalCount = correctCount + incorrectCount;
 	$('.total-count').html(totalCount);
